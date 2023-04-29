@@ -20,36 +20,66 @@
       <div v-show="current === 0">
         <!-- 球员 -->
         <div class="tab-list">
-          <div class="tab-item">
-            <!-- 放置图片 -->
-            <div class="photo">
-              <img src="/images/messi.png" alt="梅西">
-              <span>1</span>
-            </div>
-            <!-- 描述 -->
-            <div class="desc">
-              <span class="name">梅西</span>
-              <div class="hot-bar">
-                <div class="inner">433760热度</div>
-              </div>
-            </div>
-          </div>
+          <TabItem :item="player"></TabItem>
+          <TabItem :item="player2"></TabItem>
+          <TabItem :item="player3"></TabItem>
         </div>
       </div>
       <!-- 球队信息 -->
       <div v-show="current === 1">
-        球队
+        <div class="tab-list">
+          <TabItem :item="country"></TabItem>
+          <TabItem :item="country2"></TabItem>
+          <TabItem :item="country3"></TabItem>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
+import TabItem from './components/TabItem.vue';
 // 创建一个变量来记录选项卡的状态
 const current = ref(0)    //0表示球员，1表示球队
 
+const player = reactive({
+  name: '梅西',
+  img: '/images/messi.png',
+  rate: 1,
+  hot: 433320
+})
+const player2 = reactive({
+  name: '罗纳尔多',
+  img: '/images/ronaldo.png',
+  rate: 2,
+  hot: 253336
+})
+const player3 = reactive({
+  name: '内马尔',
+  img: '/images/neymar.png',
+  rate: 3,
+  hot: 203320
+})
 
+const country = reactive({
+  name: '法国',
+  img: '/images/法国.jpg',
+  rate: 1,
+  hot: 433020
+})
+const country2 = reactive({
+  name: '巴西',
+  img: '/images/巴西.jpg',
+  rate: 2,
+  hot: 303020
+})
+const country3 = reactive({
+  name: '荷兰',
+  img: '/images/荷兰.jpg',
+  rate: 3,
+  hot: 253020
+})
 
 </script>
 
@@ -97,69 +127,4 @@ const current = ref(0)    //0表示球员，1表示球队
 .tab-list {
   margin: 20px;
 }
-
-.tab-item {
-  display: flex;
-  margin-bottom: 40px;
-
-}
-
-/* 容器 */
-.photo {
-  position: relative;
-
-  width: 150px;
-  background-color: #fff;
-  border-radius: 15px;
-  overflow: hidden;
-}
-
-/* 图片 */
-.photo img {
-  width: 100%;
-  vertical-align: top;
-}
-
-/* 排名 */
-.photo span {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 40px;
-  height: 40px;
-  background-color: rgb(245, 102, 1);
-  font-size: 20px;
-  font-weight: bold;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom-right-radius: 15px;
-}
-
-.desc {
-  font-size: 30px;
-  color: #fff;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-evenly;
-  flex: auto;
-  margin-left: 30px;
-}
-
-.hot-bar {
-  background-color: rgb(3, 37, 103);
-  border-radius: 20px;
-  text-indent: 0.5em;
-  overflow: hidden;
-}
-
-.inner {
-  border-radius: 20px;
-  background-image: 
-  linear-gradient(90deg,rgb(187, 3, 52) 50%,
-  rgb(66,2,12));
-  white-space: nowrap;
-}
-
 </style>
