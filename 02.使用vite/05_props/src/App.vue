@@ -1,36 +1,31 @@
 <template>
-  <h1>App组件</h1>
-  <!-- 
-    希望在父组件中指定子组件中的内容
-        我们可以通过插槽(slot)来实现该需求
-        <MyButton> 插槽的入口 </MyButton>
-
-        <button>
-          <slot></slot>   插槽的出口
-        </button>
-
-    通过插槽引入的组件，位于父组件的作用域中
-
-   -->
-  <!-- <MyButton>
-    <A></A> 
-  </MyButton> -->
-
-  <MyWapper>
-    <!-- 
-      具名插槽的入口
-     -->
-    <template v-slot:a>这是h1的数据</template>
-    <template #b>这是h2的数据</template>
-
-
-  </MyWapper>
+  <h1>
+    属性的透传
+  </h1>
+  <h2 class="box1">我是h2</h2>
+  <C class="box2" @click="showMsg"></C>
 </template>
 
 <script setup>
-import MyButton from './components/MyButton.vue';
-import A from './components/a.vue'
-import MyWapper from './components/MyWapper.vue'
-</script> 
+import C from './components/C.vue'
 
-<style lang="scss" scoped></style>
+/**
+ * 透传属性
+ *    -在组件上设置属性，会自动传递给组件的根元素
+ *    -这样一来可以方便我们在父组件中为子组件设置属性
+ *    -透传会发生在没有被声明为 props 和 emits 的属性上
+ *    -透传的属性会覆盖子组件根元素上的原有属性
+ *    -自动的透传只适用于单根组件，如果组件有多个根元素，透传会失效
+ * 
+ */
+function showMsg() {
+  alert('showMsg')
+}
+
+</script>
+
+<style lang="css" scoped>
+.box2 {
+  background-color: red;
+}
+</style>
