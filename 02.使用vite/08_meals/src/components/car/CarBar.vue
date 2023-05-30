@@ -1,4 +1,10 @@
 <template>
+    <!-- 遮罩层 -->
+    <!-- <Mask :is-show="showDetail" @hidden="showDetail = false"></Mask> -->
+    <CarList :isShow="showDetail" @hidden="showDetail = false"></CarList>
+
+
+
     <div class="car-bar">
         <div class="car-bag">
             <img :src="carBag" alt="">
@@ -10,14 +16,18 @@
             </p>
             <p v-show="meals.totalCount > 0" class="have-thing">{{ meals.totalMenoy }}</p>
         </div>
-        <button class="checkout">去结算</button>
+        <button @click="showDetail = true" class="checkout">去结算</button>
     </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import carBag from "../../assets/bag.png";
 import { useMealsStore } from '../../store/meals';
+// import Mask from '../ui/Mask.vue'
+import CarList from './CarList.vue'
 const meals = useMealsStore()
+const showDetail = ref(false)
 </script>
 
 <style lang="css" scoped>
@@ -31,6 +41,7 @@ const meals = useMealsStore()
     bottom: 50rem;
     background-color: rgb(58, 58, 58);
     border-radius: 60rem;
+    z-index: 1000;
 }
 
 .car-bag {
