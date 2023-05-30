@@ -21,8 +21,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-const emit = defineEmits(['addNewStudent'])
+import { ref,inject } from 'vue';
+
+const {addNewStudent} =inject('student')
+
+
+
 // 创建一个ref来存储新的学生信息
 const newStu = ref({
     name: '',
@@ -39,7 +43,11 @@ const submitHandler = () => {
     // emit('addNewStudent', Object.assign({}, newStu.value))
     
     // 或直接用展开运算符
-    emit('addNewStudent', {...newStu.value})
+    // emit('addNewStudent', {...newStu.value})
+
+    addNewStudent({...newStu.value})
+
+
     // 清空表单
     newStu.value.name = ''
     newStu.value.age = 1
