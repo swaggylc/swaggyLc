@@ -2,13 +2,16 @@
     <!-- 所有汉堡的容器 -->
     <div class="meals">
         <!-- 显示商品信息 -->
-        <Meal v-for="item in meals.filterMeals" :meal="item"></Meal>
+        <Meal :desc="$attrs.desc" v-for="item in props.meals" :meal="item"></Meal>
     </div>
 </template>
 
 <script setup>
     import Meal from "./Meal.vue";
     import { useMealsStore } from "../../store/meals";
+
+    const props=defineProps(['meals'])
+
     const meals = useMealsStore()
 </script>
 

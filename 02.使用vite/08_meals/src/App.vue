@@ -1,6 +1,6 @@
 <template>
   <Mealsfilter></Mealsfilter>
-  <Meals></Meals>
+  <Meals :desc="true" :meals="meals.filterMeals"></Meals>
   <CarBar></CarBar>
 </template>
 
@@ -9,6 +9,9 @@ import { useMealsStore } from "./store/meals";
 import Mealsfilter from "./components/mealsfilter/mealsfilter.vue";
 import Meals from "./components/meals/meals.vue";
 import CarBar from "./components/car/CarBar.vue";
+
+
+
 const meals = useMealsStore()
 
 </script>

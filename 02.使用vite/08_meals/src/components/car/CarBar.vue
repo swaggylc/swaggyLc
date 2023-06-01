@@ -10,13 +10,13 @@
             <img :src="carBag" alt="">
             <span v-show="meals.totalCount > 0" class="total-count">{{ meals.totalCount }}</span>
         </div>
-        <div class="total-money">
+        <div class="total-money" @click="showDetail = true">
             <p v-show="meals.totalCount <= 0" class="no-thing">
                 未选购商品(⊙o⊙)…
             </p>
             <p v-show="meals.totalCount > 0" class="have-thing">{{ meals.totalMenoy }}</p>
         </div>
-        <button @click="showDetail = true" class="checkout">去结算</button>
+        <button  class="checkout">去结算</button>
     </div>
 </template>
 

@@ -89,6 +89,9 @@ export const useMealsStore = defineStore('meals', {
         subMealFormCar(meal) {
             if (isNaN(meal.count) || meal.count <= 0) return;
             meal.count--;
+        },
+        clearCar() {    
+            this.carMeals.forEach(item => item.count = 0);
         }
     }
 });
